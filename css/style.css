@@ -1,0 +1,203 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+body{
+    display: flex;
+    justify-content: center;
+    /* background-color: beige; */
+    background-image: url(../images/metal.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+.page{
+    width: 80%;
+}
+a{
+    color: black;
+    text-decoration: none;
+    transition: all 100ms ease-in-out;
+}
+a:hover{
+    color: dimgray;
+}
+/* navbar */
+.logo{
+    display: flex;
+    align-items: center;
+}
+.image{
+    width: 64px;
+    cursor: pointer;
+}
+.title{
+    -webkit-text-fill-color: white;
+    -webkit-text-stroke: 1px;
+    cursor: pointer;
+}
+.nav-container{
+    padding: 2rem 2rem;
+    background-color: gray;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+.menu{
+    align-items: center;
+}
+.menu ul{
+    list-style-type: none;
+    display: flex;
+    gap: 2rem;
+}
+.menu ul li{
+    display: inline;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+/* product search */
+.product-search{
+    background-image: url(../images/tools1.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    height: 200px;
+    width: 100%;
+}
+.form1{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    gap: 1rem;
+}
+.product-search input[type="search"]{
+    padding: 10px 10px;
+    font-size: 1rem;
+    border-radius: 5px;
+    width: 50%;
+}
+.btn{
+    width: 100px;
+    cursor: pointer;
+    background-color: gray;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+.btn:hover{
+    background-color: dimgray;
+    transition: all 100ms ease-in-out;
+}
+/* categories */
+.categories_header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: gray;
+    height: 100px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+h2{
+    font-size: 3rem;
+    -webkit-text-fill-color: white;
+    -webkit-text-stroke: 1px;
+}
+.categories{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    height: 30vw;
+    gap: 10vw;
+}
+.category{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 20vw;
+    height: 20vw;
+    cursor: pointer;
+    border-radius: 15px;
+    background-color: grey;
+}
+.category:hover{
+    background-color: dimgray;
+    transition: all 100ms ease-in-out;
+}
+.category_image{
+    width: 10vw;
+}
+h3{
+    display: flex;
+    justify-content: center;
+    font-size: 2rem;
+    -webkit-text-fill-color: white;
+    -webkit-text-stroke: 1px;
+}
+/* products */
+.products_header{
+    height: 100px;
+    background-color: gray;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    -webkit-text-fill-color: white;
+    -webkit-text-stroke: 1px;
+    border-radius: 15px;
+}
+.products{
+    background-color: white;
+    height: 500px;
+}
+/* footer */
+.footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: gray;
+    height: 100px;
+    /* position: absolute;
+    bottom: 0px; */
+}
+/* signup */
+.signup{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: white;
+}
+.signup-form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+th, td {
+    padding: 15px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+table{
+    width: 100%;
+    /* border-collapse: collapse; */
+}
+tr:hover {background-color: coral;}
+.users{
+    height: 150%;
+    background-color: white;
+}
+.update{
+    display: flex;
+    background-color: white;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
