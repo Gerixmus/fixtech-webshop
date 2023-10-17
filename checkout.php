@@ -1,4 +1,7 @@
-<?php include_once('header.php'); ?>
+<?php
+session_start();
+include_once('header.php');
+?>
 
 <?php
 include 'includes/dbh.inc.php';
@@ -7,7 +10,6 @@ $description = "";
 ?>
 
 <?php
-session_start();
 if (!isset($_SESSION['email'])) {
     header('location: login.php');
 }

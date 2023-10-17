@@ -1,6 +1,7 @@
-<?php include_once('header.php');
-include('includes/dbh.inc.php');
+<?php
 session_start();
+include_once('header.php');
+include('includes/dbh.inc.php');
 require_once 'includes/functions.inc.php';
 if (!isset($_SESSION['email'])) {
     header('location: login.php');

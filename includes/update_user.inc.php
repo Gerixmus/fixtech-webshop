@@ -12,7 +12,7 @@ if (isset($_POST["submit"])) {
     require_once 'dbh.inc.php';
     require_once 'functions.inc.php';
 
-    // if (emptyInputSignup($name, $surname, $email, $passwd) !== false) {
+    // if (emptyInputSignup($name, $surname, $email, $password) !== false) {
     //     header("location: ../signup.php?error=emptyinput");
     //     exit();
     // }
@@ -21,9 +21,8 @@ if (isset($_POST["submit"])) {
         exit();
     }
 
-    updateUser ($conn, $privilege, $name, $surname, $email, $phone_no, $active, $user_id);
-}
-else {
+    updateUser($conn, $privilege, $name, $surname, $email, $phone_no, $active, $user_id);
+} else {
     header("location: ../users.php");
     exit();
 }

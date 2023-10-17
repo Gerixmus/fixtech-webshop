@@ -1,28 +1,29 @@
 <?php
 
-function emptyInputSignup($name, $surname, $email, $passwd) {
+function emptyInputSignup($name, $surname, $email, $password)
+{
     $result = false;
-    if (empty($name) || empty($surname) || empty($email) || empty($passwd)) {
+    if (empty($name) || empty($surname) || empty($email) || empty($password)) {
         $result = true;
-    }
-    else {
+    } else {
         $result = false;
     }
     return $result;
 }
 
-function invalidEmail($email) {
+function invalidEmail($email)
+{
     $result = false;
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $result = true;
-    }
-    else {
+    } else {
         $result = false;
     }
     return $result;
 }
 
-function emailTaken($conn, $email) {
+function emailTaken($conn, $email)
+{
     $sql = "SELECT * FROM user WHERE email = ?;";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
@@ -37,15 +38,15 @@ function emailTaken($conn, $email) {
 
     if ($row = mysqli_fetch_assoc($resultData)) {
         return $row;
-    }
-    else {
+    } else {
         $result = false;
         return $result;
     }
     mysqli_stmt_close($stmt);
 }
 
-function createUser($conn, $name, $surname, $email, $passwd) {
+function createUser($conn, $name, $surname, $email, $password)
+{
     $sql = "INSERT INTO user (privilege, name, surname, email, password, active) VALUES (0, ?, ?, ?, ?, 1);";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
@@ -53,27 +54,28 @@ function createUser($conn, $name, $surname, $email, $passwd) {
         exit();
     }
 
-    $hashedPasswd = password_hash($passwd, PASSWORD_DEFAULT);
+    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-    mysqli_stmt_bind_param($stmt, "ssss",   $name, $surname, $email, $hashedPasswd);
+    mysqli_stmt_bind_param($stmt, "ssss",   $name, $surname, $email, $hashedPassword);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
     header("location: ../signup.php?error=none");
     exit();
 }
 
-function emptyInputLogin($email, $passwd) {
+function emptyInputLogin($email, $password)
+{
     $result = false;
-    if (empty($email) || empty($passwd)) {
+    if (empty($email) || empty($password)) {
         $result = true;
-    }
-    else {
+    } else {
         $result = false;
     }
     return $result;
 }
 
-function loginUser ($conn, $email, $passwd) {
+function loginUser($conn, $email, $password)
+{
     $userExists = emailTaken($conn, $email);
 
     if ($userExists === false) {
@@ -83,19 +85,18 @@ function loginUser ($conn, $email, $passwd) {
 
     $active = $userExists["active"];
 
-    if ($active!="1"){
+    if ($active != "1") {
         header("location: ../login.php?error=wronginfo");
         exit();
     }
 
-    $passwdHashed = $userExists["password"];
-    $checkPasswd = password_verify($passwd, $passwdHashed);
+    $passwordHashed = $userExists["password"];
+    $checkPassword = password_verify($password, $passwordHashed);
 
-    if ($checkPasswd === false) {
+    if ($checkPassword === false) {
         header("location: ../login.php?error=wronginfo");
         exit();
-    }
-    elseif ($checkPasswd === true) {
+    } elseif ($checkPassword === true) {
         session_start();
         $_SESSION["email"] = $userExists["email"];
         header("location: ../index.php");
@@ -103,7 +104,8 @@ function loginUser ($conn, $email, $passwd) {
     }
 }
 
-function updateUser($conn, $privilege, $name, $surname, $email, $phone_no, $active, $user_id) {
+function updateUser($conn, $privilege, $name, $surname, $email, $phone_no, $active, $user_id)
+{
     $sql = "UPDATE user SET privilege = ?, name = ?, surname = ?, email = ?, phone_no = ?, active = ? WHERE user_id = ?;";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
@@ -118,7 +120,8 @@ function updateUser($conn, $privilege, $name, $surname, $email, $phone_no, $acti
     exit();
 }
 
-function changePassword($conn, $password, $user_id) {
+function changePassword($conn, $password, $user_id)
+{
     $sql = "UPDATE user SET password = ? WHERE user_id = ?;";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
@@ -126,16 +129,17 @@ function changePassword($conn, $password, $user_id) {
         exit();
     }
 
-    $hashedPasswd = password_hash($password, PASSWORD_DEFAULT);
+    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-    mysqli_stmt_bind_param($stmt, "ss",   $hashedPasswd, $user_id);
+    mysqli_stmt_bind_param($stmt, "ss",   $hashedPassword, $user_id);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
     header("location: ../users.php?error=none");
     exit();
 }
 
-function updateProduct($conn, $product_name, $category, $price, $manufacturer, $status, $product_id) {
+function updateProduct($conn, $product_name, $category, $price, $manufacturer, $status, $product_id)
+{
     $sql = "UPDATE product SET product_name = ?, category = ?, price = ?, manufacturer = ?, status = ? WHERE product_id = ?;";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
@@ -150,7 +154,8 @@ function updateProduct($conn, $product_name, $category, $price, $manufacturer, $
     exit();
 }
 
-function addProduct($conn, $product_name, $category, $price, $manufacturer, $status) {
+function addProduct($conn, $product_name, $category, $price, $manufacturer, $status)
+{
     $sql = "INSERT INTO product (product_name, category, price, manufacturer, status) VALUES (?, ?, ?, ?, ?);";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
@@ -165,7 +170,8 @@ function addProduct($conn, $product_name, $category, $price, $manufacturer, $sta
     exit();
 }
 
-function addOrder($conn, $user_id, $description, $total, $status, $date) {
+function addOrder($conn, $user_id, $description, $total, $status, $date)
+{
     $sql = "INSERT INTO orders (user_id, description, total, status, date) VALUES (?, ?, ?, ?, ?);";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
@@ -176,34 +182,40 @@ function addOrder($conn, $user_id, $description, $total, $status, $date) {
     mysqli_stmt_bind_param($stmt, "sssss",  $user_id, $description, $total, $status, $date,);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
-    echo'<script>alert("Operation Successfull! View your orders in orders tab.")</script>  
+    echo '<script>alert("Operation Successfull! View your orders in orders tab.")</script>  
     <script>window.location.href = "../index.php";</script>';
     exit();
 }
 
-class ErrorLog {
+class ErrorLog
+{
     const ERROR_FILE = "includes/error.log";
     private $errno;
     private $errMsg;
     private $errFile;
     private $errLine;
-    
-    public function WriteError() {
-    $error = "Error logged: " . date("Y-m-d H:i:s - ");
-    $error .= "[ " . $this->errno . " ]: ";
-    $error .= $this->errMsg;
-    $error .= " in file " . $this->errFile;
-    $error .= " on line " . $this->errLine ."\n";
-    error_log($error, 3, self::ERROR_FILE);
+
+    public function WriteError()
+    {
+        $error = "Error logged: " . date("Y-m-d H:i:s - ");
+        $error .= "[ " . $this->errno . " ]: ";
+        $error .= $this->errMsg;
+        $error .= " in file " . $this->errFile;
+        $error .= " on line " . $this->errLine . "\n";
+        error_log($error, 3, self::ERROR_FILE);
     }
 }
-    
 
-function handleUncaughtException($e){
-    $log = new ErrorLog($e->getCode(), $e->getMessage(), 
-                  $e->getFile(), $e->getLine());
+
+function handleUncaughtException($e)
+{
+    $log = new ErrorLog(
+        $e->getCode(),
+        $e->getMessage(),
+        $e->getFile(),
+        $e->getLine()
+    );
     $log->WriteError();
     exit("An unexpected error occurred. Please contact the system 	  administrator!");
-    }
+}
 set_exception_handler('handleUncaughtException');
-    
