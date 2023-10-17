@@ -12,7 +12,7 @@ include 'includes/dbh.inc.php';
             <span class="navbar-text">Fix Tech</span>
         </div>
         <ul class="navbar-links">
-            <li><a href="http://localhost/fixtech-webshop/index.php">Home</a></li>
+            <li><a href="index.php">Home</a></li>
             <?php
             if (isset($_SESSION["email"])) {
                 require_once 'includes/functions.inc.php';
