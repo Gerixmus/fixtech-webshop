@@ -2,8 +2,16 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
+
+h2{
+    padding: 1rem;
+}
+
+input{
+    margin: 5px;
+}
+
 body{
     display: flex;
     justify-content: center;
@@ -12,9 +20,14 @@ body{
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
 }
 .page{
     width: 80%;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 a{
     color: black;
@@ -25,40 +38,7 @@ a:hover{
     color: dimgray;
 }
 /* navbar */
-.logo{
-    display: flex;
-    align-items: center;
-}
-.image{
-    width: 64px;
-    cursor: pointer;
-}
-.title{
-    -webkit-text-fill-color: white;
-    -webkit-text-stroke: 1px;
-    cursor: pointer;
-}
-.nav-container{
-    padding: 2rem 2rem;
-    background-color: gray;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-}
-.menu{
-    align-items: center;
-}
-.menu ul{
-    list-style-type: none;
-    display: flex;
-    gap: 2rem;
-}
-.menu ul li{
-    display: inline;
-    font-weight: bold;
-    font-size: 1.5rem;
-}
+
 /* product search */
 .product-search{
     background-image: url(../images/tools1.jpg);
@@ -104,8 +84,6 @@ a:hover{
 }
 h2{
     font-size: 3rem;
-    -webkit-text-fill-color: white;
-    -webkit-text-stroke: 1px;
 }
 .categories{
     display: flex;
@@ -137,9 +115,54 @@ h3{
     display: flex;
     justify-content: center;
     font-size: 2rem;
-    -webkit-text-fill-color: white;
-    -webkit-text-stroke: 1px;
 }
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .navbar-logo {
+    display: flex;
+    align-items: center;
+    font-size: 24px; /* Increase the font size */
+  }
+  
+  .navbar-logo img {
+    width: 50px; /* Increase the image size */
+    height: 50px;
+    margin-right: 10px;
+  }
+  
+  .navbar-text {
+    font-weight: bold;
+  }
+  
+  .navbar-links {
+    list-style: none;
+    display: flex; /* Make the list items appear in a horizontal line */
+  }
+  
+  .navbar-links li {
+    margin: 0 10px;
+    font-size: 18px; /* Increase the font size of the list items */
+  }
+  
+  .navbar-links a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    transition: color 0.3s;
+  }
+  
+  .navbar-links a:hover {
+    color: #888;
+  }
 /* products */
 .products_header{
     height: 100px;
@@ -148,31 +171,21 @@ h3{
     align-items: center;
     justify-content: center;
     font-size: 3rem;
-    -webkit-text-fill-color: white;
-    -webkit-text-stroke: 1px;
     border-radius: 15px;
 }
 .products{
     background-color: white;
     height: 500px;
 }
-/* footer */
-.footer{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: gray;
-    height: 100px;
-    /* position: absolute;
-    bottom: 0px; */
-}
+
 /* signup */
 .signup{
     display: flex;
-    justify-content: center;
     align-items: center;
     flex-direction: column;
     background-color: white;
+    flex: 1;
+    min-width: 320px;
 }
 .signup-form{
     display: flex;
@@ -201,3 +214,68 @@ tr:hover {background-color: coral;}
     align-items: center;
     justify-content: center;
 }
+
+.login-form {
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    flex: 1;
+  }
+  
+  .login-form h2 {
+    color: #333;
+  }
+  
+  .form-group {
+    margin: 10px 0;
+    text-align: left;
+  }
+  
+  .form-group label {
+    color: #333;
+    display: block;
+  }
+  
+  .form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .login-form button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .login-form button:hover {
+    background-color: #555;
+  }
+
+  .login-form .error-message {
+    color: darkred; /* Dark red color for error messages */
+    padding: 10px 20px;
+  }
+
+  .login-form .success-message {
+    color: #4CAF50;
+    padding: 10px 20px;
+  }
+
+
+  .footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+  }
+  
+  .footer p {
+    margin: 0;
+    font-size: 14px;
+  }

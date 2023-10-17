@@ -4,7 +4,7 @@ if (isset($_POST["submit"])) {
     $name = $_POST["name"];
     $surname = $_POST["surname"];
     $email = $_POST["email"];
-    $passwd = $_POST["passwd"];
+    $passwd = $_POST["password"];
 
     require_once 'dbh.inc.php';
     require_once 'functions.inc.php';
@@ -22,9 +22,8 @@ if (isset($_POST["submit"])) {
         exit();
     }
 
-    createUser ($conn, $name, $surname, $email, $passwd);
-}
-else {
+    createUser($conn, $name, $surname, $email, $passwd);
+} else {
     header("location: ../signup.php");
     exit();
 }
