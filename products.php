@@ -65,7 +65,7 @@ if (isset($_GET["action"])) {
     <?php
     if (!empty($_SESSION["shopping_cart"])) {
         echo '<a href="cart.php" class="cart-icon" id="cart-icon">
-    <i class="fas fa-shopping-cart"></i>
-</a>';
+                <i class="fas fa-shopping-cart"></i>
+            </a>';
     } ?>
 </div>

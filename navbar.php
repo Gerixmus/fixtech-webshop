@@ -33,11 +33,3 @@ include 'includes/dbh.inc.php';
         </ul>
     </nav>
 </body>
-
-
-
-<!-- 
-TO DO LIST
-make users.php inaccessible to normal user 
-make each header work
--->

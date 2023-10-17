@@ -35,6 +35,6 @@
 <div class="search-section">
     <form class="search-content" id="search-form">
         <input id="search" type="search" name="search" placeholder="">
-        <button type="submit" class="btn">Search</button>
+        <button type="submit">Search</button>
     </form>
 </div>
