@@ -18,7 +18,7 @@ if ($result) {
         <td class="product-data">' . $row['category'] . '</td>
         <td class="product-data">' . $row['price'] . '</td>
         <td class="product-data">' . $row['manufacturer'] . '</td>
-        <td><form method="post" action="index.php?action=add&id=$' . $row['product_id'] . '"><input type="number" name="quantity" class="form-control" value="1"/>
+        <td><form method="post" action="index.php?action=add&id=$' . $row['product_id'] . '"><input type="number" name="quantity" class="form-control" value="1" min="0" max="999"/>
         <input type="hidden" name="hidden_name" class="form-control" value="' . $row['product_name'] . '"/>
         <input type="hidden" name="hidden_price" class="form-control" value="' . $row['price'] . '"/>
         <input type="submit" name="add_to_cart" class="btn" value="Add to Cart"/>

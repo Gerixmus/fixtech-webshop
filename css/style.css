@@ -226,7 +226,6 @@ table{
     width: 100%;
     /* border-collapse: collapse; */
 }
-tr:hover {background-color: coral;}
 .users{
     height: 150%;
     background-color: white;
