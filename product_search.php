@@ -2,11 +2,8 @@
 
 <script>
     $(document).ready(function() {
-        $("#search-form").submit(function(event) {
-            event.preventDefault(); // Prevent the default form submission
-            var search = $("#search").val();
-
-            // Use AJAX to fetch and display products
+        // Function to load products
+        function loadProducts(search) {
             $.ajax({
                 url: "get_products.php",
                 type: "GET",
@@ -21,6 +18,16 @@
                     console.log("AJAX request failed. Error: " + error);
                 }
             });
+        }
+
+        // Initial load of products when the page loads
+        loadProducts($("#search").val());
+
+        // Submit form using AJAX
+        $("#search-form").submit(function(event) {
+            event.preventDefault(); // Prevent the default form submission
+            var search = $("#search").val();
+            loadProducts(search);
         });
     });
 </script>

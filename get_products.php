@@ -12,7 +12,16 @@ $result = mysqli_query($conn, $sql);
 
 if ($result) {
     while ($row = mysqli_fetch_assoc($result)) {
-        // Generate HTML for each product
-        echo '<div class="product">' . $row['product_name'] . '</div>';
+        echo '<tr class="product-row">
+        <td class="product-data">' . $row['product_id'] . '</td>
+        <td class="product-data">' . $row['product_name'] . '</td>
+        <td class="product-data">' . $row['category'] . '</td>
+        <td class="product-data">' . $row['price'] . '</td>
+        <td class="product-data">' . $row['manufacturer'] . '</td>
+        <td><form method="post" action="index.php?action=add&id=$' . $row['product_id'] . '"><input type="number" name="quantity" class="form-control" value="1"/>
+        <input type="hidden" name="hidden_name" class="form-control" value="' . $row['product_name'] . '"/>
+        <input type="hidden" name="hidden_price" class="form-control" value="' . $row['price'] . '"/>
+        <input type="submit" name="add_to_cart" class="btn" value="Add to Cart"/>
+        </form></td>';
     }
 }
