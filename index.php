@@ -6,8 +6,6 @@
 
         <?php include('product_search.php'); ?>
 
-        <!-- <?php include('categories.php'); ?> -->
-
         <?php include('products.php'); ?>
 
         <?php include('footer.php'); ?>

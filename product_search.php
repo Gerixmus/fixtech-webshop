@@ -1,24 +1,33 @@
-<!-- product search -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
 <script>
     $(document).ready(function() {
-        $("form1").submit(function(event){
-            event.preventDefault();
+        $("#search-form").submit(function(event) {
+            event.preventDefault(); // Prevent the default form submission
             var search = $("#search").val();
-            var submit = $("#submit").val();
-            $(".form-message").load("index.php", {
-                search: search,
-                submit: submit
+
+            // Use AJAX to fetch and display products
+            $.ajax({
+                url: "get_products.php",
+                type: "GET",
+                data: {
+                    search: search
+                },
+                success: function(response) {
+                    // Update the product listing with the retrieved data
+                    $("#product-list").html(response);
+                },
+                error: function(xhr, status, error) {
+                    console.log("AJAX request failed. Error: " + error);
+                }
             });
         });
     });
 </script>
 
-<div class="product-search">
-    <form class="form1" action="" method="$_GET">
+<div class="search-section">
+    <form class="search-content" id="search-form">
         <input id="search" type="search" name="search" placeholder="">
-        <input id="submit" type="submit" name="submit" value="Search" class="btn">
-        <p class="form-message"></p>
+        <button type="submit" class="btn">Search</button>
     </form>
 </div>
