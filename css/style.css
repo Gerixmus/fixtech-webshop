@@ -15,7 +15,6 @@ input{
 body{
     display: flex;
     justify-content: center;
-    /* background-color: beige; */
     background-image: url(../images/metal.jpg);
     background-size: cover;
     background-repeat: no-repeat;
@@ -30,13 +29,12 @@ body{
     min-height: 100vh;
 }
 a{
-    color: black;
+    color: #fff;
     text-decoration: none;
-    transition: all 100ms ease-in-out;
+    /* transition: all 100ms ease-in-out; */
 }
 
 /* product search */
-/* Add this CSS to your existing styles or your external CSS file */
 .search-section {
     background-image: url(../images/tools1.jpg);
     background-size: cover;
@@ -52,8 +50,8 @@ a{
     padding: 20px;
     border-radius: 5px;
     text-align: center;
-    display: flex; /* Add display: flex */
-    align-items: center; /* Vertically align the children */
+    display: flex; 
+    align-items: center; 
   }
   
   .search-content input[type="search"] {
@@ -128,11 +126,11 @@ h3{
   .navbar-logo {
     display: flex;
     align-items: center;
-    font-size: 24px; /* Increase the font size */
+    font-size: 24px;
   }
   
   .navbar-logo img {
-    width: 50px; /* Increase the image size */
+    width: 50px;
     height: 50px;
     margin-right: 10px;
   }
@@ -143,12 +141,12 @@ h3{
   
   .navbar-links {
     list-style: none;
-    display: flex; /* Make the list items appear in a horizontal line */
+    display: flex;
   }
   
   .navbar-links li {
     margin: 0 10px;
-    font-size: 18px; /* Increase the font size of the list items */
+    font-size: 18px; 
   }
   
   .navbar-links a {
@@ -170,11 +168,11 @@ h3{
 }
 
 .product-main-header {
-    margin-bottom: 20px; /* Adds space below the header */
-    font-size: 24px; /* Adjust the font size */
-    color: #333; /* Set the font color */
-    text-transform: uppercase; /* Make the text uppercase */
-    text-align: center; /* Center the text */
+    margin-bottom: 20px;
+    font-size: 24px; 
+    color: #333; 
+    text-transform: uppercase; 
+    text-align: center; 
 }
 
 
@@ -187,6 +185,7 @@ th.product-header, td.product-data {
     border: 1px solid #ddd;
     text-align: left;
     padding: 8px;
+    text-align: center;
 }
 
 th.product-header {
@@ -199,7 +198,7 @@ tr.product-row:nth-child(even) {
 }
 
 tr.product-row:hover {
-    background-color: #f5f5f5; /* Light gray */
+    background-color: #f5f5f5;
 }
 
 /* signup */
@@ -281,7 +280,7 @@ table{
   }
 
   .login-form .error-message {
-    color: darkred; /* Dark red color for error messages */
+    color: darkred;
     padding: 10px 20px;
   }
 
@@ -306,34 +305,37 @@ table{
 /* Style for the cart icon */
 .cart-icon {
     position: fixed;
-    bottom: 20px; /* Adjust this value to position it vertically */
-    right: 30px; /* Adjust this value to move it to the left */
-    background-color: #333; /* Background color for the circle */
-    color: #fff; /* Color of the icon */
-    border-radius: 50%; /* Makes the background a circle */
-    padding: 20px; /* Increase the padding to make it bigger */
-    z-index: 9999; /* Ensures it's on top of other content */
-    cursor: pointer; /* Add a pointer cursor to indicate it's clickable */
-    text-align: center; /* Center the icon within the circle */
-    font-size: 24px; /* Increase the icon size */
+    bottom: 20px; 
+    right: calc(5% - 34px);
+    background-color: #333; 
+    color: #fff; 
+    border-radius: 50%;
+    padding: 20px; 
+    z-index: 9999; 
+    cursor: pointer; 
+    text-align: center; 
+    font-size: 24px; 
 }
 
-/* Hover effect when user hovers over the cart icon */
 .cart-icon:hover {
-    background-color: #888; /* Change the background color on hover */
+    background-color: #888; 
 }
 
 .add-to-cart-button {
-  background-color: #333; /* Background color */
-  color: #fff; /* Text color */
+  background-color: #333; 
+  color: #fff; 
   border: none;
-  padding: 6px 5px; /* Adjust padding for the desired size */
-  border-radius: 5px; /* Rounded corners */
+  padding: 6px 5px; 
+  border-radius: 5px; 
   cursor: pointer;
   transition: background-color 0.3s;
 }
 
-
 .add-to-cart-button:hover {
   background-color: #888; 
+}
+
+.option-button{
+  margin: 20px;
+  text-align: right;
 }

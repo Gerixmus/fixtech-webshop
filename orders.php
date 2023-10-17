@@ -62,12 +62,13 @@ if (!isset($_SESSION['email'])) {
                                 <td class="product-data">' . $date . '</td>
                                 </tr>';
                             } else {
-                                echo '<tr><th scope="row">' . $order_id . '</th>
-                    <td>' . $description . '</td>
-                    <td>€' . $total . '</td>
-                    <td> ' . $status . '</td>
-                    <td>' . $date . '</td>
-                    </tr>';
+                                echo '<tr class="product-row">
+                                <td class="product-data">' . $order_id . '</td>
+                                <td class="product-data">' . $description . '</td>
+                                <td class="product-data">€' . $total . '</td>
+                                <td class="product-data"> ' . $status . '</td>
+                                <td class="product-data">' . $date . '</td>
+                                </tr>';
                             }
                         }
                     }
