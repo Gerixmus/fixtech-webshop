@@ -1,9 +1,9 @@
 <?php
 
-function emptyInputSignup($name, $surname, $email, $passwd)
+function emptyInputSignup($name, $surname, $email, $password)
 {
     $result = false;
-    if (empty($name) || empty($surname) || empty($email) || empty($passwd)) {
+    if (empty($name) || empty($surname) || empty($email) || empty($password)) {
         $result = true;
     } else {
         $result = false;
@@ -45,7 +45,7 @@ function emailTaken($conn, $email)
     mysqli_stmt_close($stmt);
 }
 
-function createUser($conn, $name, $surname, $email, $passwd)
+function createUser($conn, $name, $surname, $email, $password)
 {
     $sql = "INSERT INTO user (privilege, name, surname, email, password, active) VALUES (0, ?, ?, ?, ?, 1);";
     $stmt = mysqli_stmt_init($conn);
@@ -54,19 +54,19 @@ function createUser($conn, $name, $surname, $email, $passwd)
         exit();
     }
 
-    $hashedPasswd = password_hash($passwd, PASSWORD_DEFAULT);
+    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-    mysqli_stmt_bind_param($stmt, "ssss",   $name, $surname, $email, $hashedPasswd);
+    mysqli_stmt_bind_param($stmt, "ssss",   $name, $surname, $email, $hashedPassword);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
     header("location: ../signup.php?error=none");
     exit();
 }
 
-function emptyInputLogin($email, $passwd)
+function emptyInputLogin($email, $password)
 {
     $result = false;
-    if (empty($email) || empty($passwd)) {
+    if (empty($email) || empty($password)) {
         $result = true;
     } else {
         $result = false;
@@ -74,7 +74,7 @@ function emptyInputLogin($email, $passwd)
     return $result;
 }
 
-function loginUser($conn, $email, $passwd)
+function loginUser($conn, $email, $password)
 {
     $userExists = emailTaken($conn, $email);
 
@@ -90,13 +90,13 @@ function loginUser($conn, $email, $passwd)
         exit();
     }
 
-    $passwdHashed = $userExists["password"];
-    $checkPasswd = password_verify($passwd, $passwdHashed);
+    $passwordHashed = $userExists["password"];
+    $checkPassword = password_verify($password, $passwordHashed);
 
-    if ($checkPasswd === false) {
+    if ($checkPassword === false) {
         header("location: ../login.php?error=wronginfo");
         exit();
-    } elseif ($checkPasswd === true) {
+    } elseif ($checkPassword === true) {
         session_start();
         $_SESSION["email"] = $userExists["email"];
         header("location: ../index.php");
@@ -129,9 +129,9 @@ function changePassword($conn, $password, $user_id)
         exit();
     }
 
-    $hashedPasswd = password_hash($password, PASSWORD_DEFAULT);
+    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-    mysqli_stmt_bind_param($stmt, "ss",   $hashedPasswd, $user_id);
+    mysqli_stmt_bind_param($stmt, "ss",   $hashedPassword, $user_id);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
     header("location: ../users.php?error=none");
