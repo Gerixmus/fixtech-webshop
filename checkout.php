@@ -1,4 +1,7 @@
-<?php include_once('header.php'); ?>
+<?php
+session_start();
+include_once('header.php');
+?>
 
 <?php
 include 'includes/dbh.inc.php';

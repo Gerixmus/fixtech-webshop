@@ -1,7 +1,6 @@
-<?php include_once('header.php'); ?>
-
 <?php
 session_start();
+include_once('header.php');
 if (!isset($_SESSION['email'])) {
     header('location: login.php');
 }
