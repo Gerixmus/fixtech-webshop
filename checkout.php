@@ -18,54 +18,61 @@ if (!isset($_SESSION['email'])) {
 <body>
     <div class="page">
         <?php include('navbar.php'); ?>
-        <table class="table" style="background-color: white;">
-            <thead>
-                <tr>
-                    <th>Item ID</th>
-                    <th>Item Name</th>
-                    <th>Quantity</th>
-                    <th>Price</th>
-                    <th>Total</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                if (!empty($_SESSION["shopping_cart"])) {
-                    $total = 0;
-                    foreach ($_SESSION["shopping_cart"] as $keys => $values) {
-                ?>
-                        <tr>
-                            <td><?php echo $values["product_id"]; ?></td>
-                            <td><?php echo $values["product_name"]; ?></td>
-                            <td><?php echo $values["quantity"]; ?></td>
-                            <td><?php echo $values["price"]; ?></td>
-                            <td><?php echo number_format($values["quantity"] * $values["price"], 2); ?></td>
+
+        <div class="product-container">
+            <h1 class="product-main-header">Checkout</h1>
+            <table class="product-table">
+                <thead>
+                    <tr>
+                        <th class="product-header">Item ID</th>
+                        <th class="product-header">Item Name</th>
+                        <th class="product-header">Quantity</th>
+                        <th class="product-header">Price</th>
+                        <th class="product-header">Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    if (!empty($_SESSION["shopping_cart"])) {
+                        $total = 0;
+                        foreach ($_SESSION["shopping_cart"] as $keys => $values) {
+                    ?>
+                            <tr class="product-row">
+                                <td class="product-data"><?php echo $values["product_id"]; ?></td>
+                                <td class="product-data"><?php echo $values["product_name"]; ?></td>
+                                <td class="product-data"><?php echo $values["quantity"]; ?></td>
+                                <td class="product-data"><?php echo $values["price"]; ?></td>
+                                <td class="product-data"><?php echo number_format($values["quantity"] * $values["price"], 2); ?></td>
+                            </tr>
+                        <?php
+                            $description_creator .= '{ "product_id": "' . $values["product_id"] . '", "product_name": "' . $values["product_name"] . '", "quantity": "' . $values["quantity"] . '" }, ';
+                            $description = substr($description_creator, 0, -2);
+                            $total = $total + ($values["quantity"] * $values["price"]);
+                        }
+                        ?>
+                        <tr class="product-row">
+                            <td class="product-data">Total</td>
+                            <td class="product-data">€<?php echo number_format($total, 2); ?></td>
+                            <?php $user_id = emailTaken($conn, $_SESSION["email"])['user_id'];
+                            $date = date("Y-m-d h:i:sa"); ?>
+                            <td class="product-data">
+                                <form action="includes/checkout.inc.php" method="post">
+                                    <input type="hidden" name="user_id" value="<?php echo $user_id; ?>">
+                                    <input type="hidden" name="description" value="<?php echo $description; ?>">
+                                    <input type="hidden" name="total" value="<?php echo $total; ?>">
+                                    <input type="hidden" name="status" value="1">
+                                    <input type="hidden" name="date" value="<?php echo $date; ?>">
+                                    <button type="submit" class="add-to-cart-button" name="submit">Buy</button>
+                                </form>
+                            </td>
                         </tr>
                     <?php
-                        $description_creator .= '{ "product_id": "' . $values["product_id"] . '", "product_name": "' . $values["product_name"] . '", "quantity": "' . $values["quantity"] . '" }, ';
-                        $description = substr($description_creator, 0, -2);
-                        $total = $total + ($values["quantity"] * $values["price"]);
                     }
                     ?>
-                    <tr>
-                        <td>Total</td>
-                        <td>€<?php echo number_format($total, 2); ?></td>
-                        <?php $user_id = emailTaken($conn, $_SESSION["email"])['user_id'];
-                        $date = date("Y-m-d h:i:sa");
-                        echo "<td><form action='includes/checkout.inc.php' method='post'>
-                        <input type='hidden' id='user_id' name='user_id' value='$user_id'>
-                        <input type='hidden' id='description' name='description' value='$description'>
-                        <input type='hidden' id='total' name='total' value='$total'>
-                        <input type='hidden' id='status' name='status' value='1'>
-                        <input type='hidden' id='date' name='date' value='$date'>
-                        <input type='submit' class='btn' name='submit' value='Buy'>
-                        </form></td>" ?>
-                    </tr>
-                <?php
-                }
-                ?>
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+        </div>
+
         <?php include('footer.php'); ?>
     </div>
 </body>

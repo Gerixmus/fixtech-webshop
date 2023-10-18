@@ -13,7 +13,6 @@ $result = mysqli_query($conn, $sql);
 if ($result) {
     while ($row = mysqli_fetch_assoc($result)) {
         echo '<tr class="product-row">
-        <td class="product-data">' . $row['product_id'] . '</td>
         <td class="product-data">' . $row['product_name'] . '</td>
         <td class="product-data">' . $row['category'] . '</td>
         <td class="product-data">' . $row['price'] . '</td>

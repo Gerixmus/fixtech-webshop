@@ -30,7 +30,8 @@ include_once('header.php');
                                 <td class="product-data"><?php echo $values["quantity"]; ?></td>
                                 <td class="product-data"><?php echo $values["price"]; ?></td>
                                 <td class="product-data"><?php echo number_format($values["quantity"] * $values["price"], 2); ?></td>
-                                <td class="product-data"><a href="index.php?action=delete&id=<?php echo $values["product_id"]; ?>"><button class="btn">Remove</button></a></td>
+                                <td class="product-data"><a href="index.php?action=delete&id=<?php echo $values["product_id"]; ?>">
+                                        <button class="add-to-cart-button">Remove</button></td>
                             </tr>
                         <?php
                             $total = $total + ($values["quantity"] * $values["price"]);
@@ -39,7 +40,8 @@ include_once('header.php');
                         <tr class="product-row">
                             <td class="product-data">Total</td>
                             <td class="product-data">€<?php echo number_format($total, 2); ?></td>
-                            <td class="product-data"><a href="checkout.php"><button class="btn">Checkout</button></a></td>
+                            <td class="product-data"><a href="checkout.php">
+                                    <button class="add-to-cart-button">Checkout</button></td>
                         </tr>
                     <?php
                     }

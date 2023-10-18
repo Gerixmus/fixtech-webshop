@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 if (isset($_POST["submit"])) {
     $user_id = $_POST['user_id'];
@@ -10,9 +11,10 @@ if (isset($_POST["submit"])) {
     require_once 'dbh.inc.php';
     require_once 'functions.inc.php';
 
-    addOrder ($conn, $user_id, $description, $total, $status, $date);
-}
-else {
+    unset($_SESSION["shopping_cart"]);
+
+    addOrder($conn, $user_id, $description, $total, $status, $date);
+} else {
     header("location: ../checkout.php");
     exit();
 }

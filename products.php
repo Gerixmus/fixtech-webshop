@@ -50,7 +50,6 @@ if (isset($_GET["action"])) {
     <table class="product-table">
         <thead>
             <tr>
-                <th class="product-header">Product ID</th>
                 <th class="product-header">Product Name</th>
                 <th class="product-header">Category</th>
                 <th class="product-header">Price</th>
