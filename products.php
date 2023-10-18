@@ -6,9 +6,9 @@ if (isset($_POST["add_to_cart"])) {
             $count = count($_SESSION["shopping_cart"]);
             $item_array = array(
                 'product_id' => $_GET["id"],
-                'product_name' => $_POST["hidden_name"],
-                'price' => $_POST["hidden_price"],
-                'quantity' => $_POST["quantity"],
+                'product_name' => $_POST["product_name"],
+                'quantity' => $_POST["product_quantity"],
+                'price' => $_POST["product_price"],
             );
             $_SESSION["shopping_cart"][$count] = $item_array;
         } else {
@@ -23,9 +23,9 @@ if (isset($_POST["add_to_cart"])) {
     } else {
         $item_array = array(
             'product_id' => $_GET["id"],
-            'product_name' => $_POST["hidden_name"],
-            'price' => $_POST["hidden_price"],
-            'quantity' => $_POST["quantity"],
+            'product_name' => $_POST["product_name"],
+            'quantity' => $_POST["product_quantity"],
+            'price' => $_POST["product_price"],
         );
         $_SESSION["shopping_cart"][0] = $item_array;
     }
@@ -47,20 +47,9 @@ if (isset($_GET["action"])) {
 
 <div class="product-container">
     <h1 class="product-main-header">Product List</h1>
-    <table class="product-table">
-        <thead>
-            <tr>
-                <th class="product-header">Product Name</th>
-                <th class="product-header">Category</th>
-                <th class="product-header">Price</th>
-                <th class="product-header">Manufacturer</th>
-                <th class="product-header">Action</th>
-            </tr>
-        </thead>
-        <tbody id="product-list">
-            <!-- Products will be loaded here -->
-        </tbody>
-    </table>
+    <div id="product-list">
+        <!-- Products will be loaded here -->
+    </div>
     <?php
     if (!empty($_SESSION["shopping_cart"])) {
         echo '<a href="cart.php" class="cart-icon" id="cart-icon">

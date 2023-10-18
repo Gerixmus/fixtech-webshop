@@ -154,16 +154,16 @@ function updateProduct($conn, $product_name, $category, $price, $manufacturer, $
     exit();
 }
 
-function addProduct($conn, $product_name, $category, $price, $manufacturer, $status)
+function addProduct($conn, $product_name, $category, $price, $manufacturer, $status, $photo)
 {
-    $sql = "INSERT INTO product (product_name, category, price, manufacturer, status) VALUES (?, ?, ?, ?, ?);";
+    $sql = "INSERT INTO product (product_name, category, price, manufacturer, status, photo) VALUES (?, ?, ?, ?, ?, ?);";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
         header("location: ../products_admin.php?error=stmtfailed");
         exit();
     }
 
-    mysqli_stmt_bind_param($stmt, "sssss",  $product_name, $category, $price, $manufacturer, $status,);
+    mysqli_stmt_bind_param($stmt, "ssssss",  $product_name, $category, $price, $manufacturer, $status, $photo);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
     header("location: ../products_admin.php?error=none");

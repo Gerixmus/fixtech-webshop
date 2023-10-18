@@ -12,15 +12,24 @@ $result = mysqli_query($conn, $sql);
 
 if ($result) {
     while ($row = mysqli_fetch_assoc($result)) {
-        echo '<tr class="product-row">
-        <td class="product-data">' . $row['product_name'] . '</td>
-        <td class="product-data">' . $row['category'] . '</td>
-        <td class="product-data">' . $row['price'] . '</td>
-        <td class="product-data">' . $row['manufacturer'] . '</td>
-        <td><form method="post" action="index.php?action=add&id=' . $row['product_id'] . '"><input type="number" name="quantity" class="form-control" value="1" min="0" max="999"/>
-        <input type="hidden" name="hidden_name" class="form-control" value="' . $row['product_name'] . '"/>
-        <input type="hidden" name="hidden_price" class="form-control" value="' . $row['price'] . '"/>
-        <button class="add-to-cart-button" type="submit" name="add_to_cart"/>Add to cart</button>
-        </form></td>';
+?>
+        <form class="product-card" method="post" action="index.php?action=add&id=<?= $row['product_id'] ?>">
+            <input type="hidden" name="product_name" value="<?= $row['product_name'] ?>">
+            <input type="hidden" name="product_quantity" value="1">
+            <input type="hidden" name="product_price" value="<?= $row['price'] ?>">
+            <img src="<?= substr($row['photo'], 3) ?>" alt="Product Image" class="product-image">
+            <h3 class="product-name" name="product-name"><?= $row['product_name'] ?></h3>
+            <p class="product-price" name="product-price">Price: $<?= $row['price'] ?></p>
+            <p class="product-manufacturer" name="product-manufacturer">Manufacturer: <?= $row['manufacturer'] ?></p>
+
+            <div class="quantity-control">
+                <label for="quantity">Quantity:</label>
+                <input type="number" id="quantity" name="quantity" value="1" min="1" max="999">
+            </div>
+
+            <button class="add-to-cart-button" type="submit" name="add_to_cart">Add to Cart</button>
+        </form>
+<?php
     }
 }
+?>

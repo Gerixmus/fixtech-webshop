@@ -17,7 +17,7 @@ if (!isset($_SESSION['email'])) {
         <div class="login-form">
             <h2>Add product</h2>
             <?php
-            echo "<form action='includes/add_product.inc.php' method='post' class='signup-form'>
+            echo "<form action='includes/add_product.inc.php' method='post' class='signup-form' enctype='multipart/form-data'>
                 <div class='form-group'>
                 <label for='product_name'>Product Name</label>
                 <input type='text' id='product_name' name='product_name' value=>
@@ -37,6 +37,10 @@ if (!isset($_SESSION['email'])) {
                 <div class='form-group'>
                 <label for='status'>Status</label>
                 <input type='text' id='status' name='status' value=>
+                </div>
+                <div class='form-group'>
+                <label for='product_image'>Product Image</label>
+                <input type='file' id='product_image' name='product_image'>
                 </div>
 
                 <button type='submit' name='submit'>Submit</button>
