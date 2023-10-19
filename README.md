@@ -8,3 +8,6 @@
 - [x] Clear cart on checkout.
 - [ ] Move deleting from basket to checkout.
 - [ ] Finish checkout on hosted version.
+- [ ] Prevent from accessing login once logged in.
+- [x] Add padding to navbar icons.
+- [ ] Check from which site I'm searching for products.
