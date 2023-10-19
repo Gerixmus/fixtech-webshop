@@ -50,10 +50,4 @@ if (isset($_GET["action"])) {
     <div id="product-list">
         <!-- Products will be loaded here -->
     </div>
-    <?php
-    if (!empty($_SESSION["shopping_cart"])) {
-        echo '<a href="cart.php" class="cart-icon" id="cart-icon">
-                <i class="fas fa-shopping-cart"></i>
-            </a>';
-    } ?>
 </div>

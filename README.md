@@ -11,3 +11,4 @@
 - [ ] Prevent from accessing login once logged in.
 - [x] Add padding to navbar icons.
 - [ ] Check from which site I'm searching for products.
+- [ ] Navbar not resizing smaller than 400px.

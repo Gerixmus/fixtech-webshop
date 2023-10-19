@@ -5,6 +5,15 @@ include 'includes/dbh.inc.php';
 ?>
 
 <script>
+    function toggleMenu() {
+        var x = document.getElementById("mobile-menu");
+        if (x.style.display === "none") {
+            x.style.display = "flex";
+        } else {
+            x.style.display = "none";
+        }
+    }
+
     $(document).ready(function() {
         // Function to load products
         function loadProducts(search) {
@@ -51,10 +60,6 @@ include 'includes/dbh.inc.php';
             require_once 'includes/functions.inc.php';
             if ((emailTaken($conn, $_SESSION["email"]))['privilege'] != '0') {
         ?>
-                <a href='cart.php' class="nav-link">
-                    <img src="images\basket-shopping-solid.svg" class="nav-icon"></img>
-                    <div class="nav-link-text">Cart</div>
-                </a>
                 <a href='orders.php' class="nav-link">
                     <img src="images\book-solid.svg" class="nav-icon"></img>
                     <div class="nav-link-text">Orders</div>
@@ -67,33 +72,28 @@ include 'includes/dbh.inc.php';
                     <img src="images\user-regular.svg" class="nav-icon"></img>
                     <div class="nav-link-text">Users</div>
                 </a>
-                <a href='includes/logout.inc.php' class="nav-link">
-                    <img src="images\right-from-bracket-solid.svg" class="nav-icon"></img>
-                    <div class="nav-link-text">Logout</div>
-                </a>
-                <a href='index.php' class="nav-link selector">
-                    <img src="images\bars-solid.svg" class="nav-icon"></img>
-                    <div class="nav-link-text">Menu</div>
-                </a>
-            <?php
-            } else {
-            ?>
-                <a href='cart.php' class="nav-link">
-                    <img src="images\basket-shopping-solid.svg" class="nav-icon"></img>
-                    <div class="nav-link-text">Cart</div>
-                </a>
-                <a href='orders.php' class="nav-link">
-                    <img src="images\book-solid.svg" class="nav-icon"></img>
-                    <div class="nav-link-text">Orders</div>
-                </a>
-                <a href='includes/logout.inc.php' class="nav-link">
-                    <img src="images\right-from-bracket-solid.svg" class="nav-icon"></img>
-                    <div class="nav-link-text">Logout</div>
-                </a>
             <?php
             }
-        } else {
             ?>
+            <a href='cart.php' class="nav-link">
+                <img src="images\basket-shopping-solid.svg" class="nav-icon"></img>
+                <div class="nav-link-text">Cart</div>
+            </a>
+            <a href='orders.php' class="nav-link">
+                <img src="images\book-solid.svg" class="nav-icon"></img>
+                <div class="nav-link-text">Orders</div>
+            </a>
+            <a href='includes/logout.inc.php' class="nav-link">
+                <img src="images\right-from-bracket-solid.svg" class="nav-icon"></img>
+                <div class="nav-link-text">Logout</div>
+            </a>
+            <a class="nav-link selector" onclick="toggleMenu()">
+                <img src="images\bars-solid.svg" class="nav-icon"></img>
+                <div class="nav-link-text">Menu</div>
+            </a>
+        <?php
+        } else {
+        ?>
             <a href='signup.php' class="nav-link">
                 <img src="images\address-card-regular.svg" class="nav-icon"></img>
                 <div class="nav-link-text">Sign up</div>
@@ -102,7 +102,62 @@ include 'includes/dbh.inc.php';
                 <img src="images\right-to-bracket-solid.svg" class="nav-icon"></img>
                 <div class="nav-link-text">Login</div>
             </a>
+            <a class="nav-link selector" onclick="toggleMenu()">
+                <img src="images\bars-solid.svg" class="nav-icon"></img>
+                <div class="nav-link-text">Menu</div>
+            </a>
         <?php
-        } ?>
+        }
+        ?>
+    </nav>
+
+    <nav class="mobile-menu" id="mobile-menu" style="display: none;">
+        <div class="mobile-nav-links">
+            <?php if (isset($_SESSION["email"])) {
+                require_once 'includes/functions.inc.php';
+                if ((emailTaken($conn, $_SESSION["email"]))['privilege'] != '0') {
+            ?>
+                    <a href='orders.php' class="mobile-nav-link">
+                        <img src="images\book-solid.svg" class="mobile-nav-icon"></img>
+                        <div class="mobile-nav-link-text">Orders</div>
+                    </a>
+                    <a href='products_admin.php' class="mobile-nav-link">
+                        <img src="images\list-ul-solid.svg" class="mobile-nav-icon"></img>
+                        <div class="mobile-nav-link-text">Products</div>
+                    </a>
+                    <a href='users.php' class="mobile-nav-link">
+                        <img src="images\user-regular.svg" class="mobile-nav-icon"></img>
+                        <div class="mobile-nav-link-text">Users</div>
+                    </a>
+                <?php
+                }
+                ?>
+                <a href='cart.php' class="mobile-nav-link">
+                    <img src="images\basket-shopping-solid.svg" class="mobile-nav-icon"></img>
+                    <div class="mobile-nav-link-text">Cart</div>
+                </a>
+                <a href='orders.php' class="mobile-nav-link">
+                    <img src="images\book-solid.svg" class="mobile-nav-icon"></img>
+                    <div class="mobile-nav-link-text">Orders</div>
+                </a>
+                <a href='includes/logout.inc.php' class="mobile-nav-link">
+                    <img src="images\right-from-bracket-solid.svg" class="mobile-nav-icon"></img>
+                    <div class="mobile-nav-link-text">Logout</div>
+                </a>
+            <?php
+            } else {
+            ?>
+                <a href='signup.php' class="mobile-nav-link">
+                    <img src="images\address-card-regular.svg" class="mobile-nav-icon"></img>
+                    <div class="mobile-nav-link-text">Sign up</div>
+                </a>
+                <a href='login.php' class="mobile-nav-link">
+                    <img src="images\right-to-bracket-solid.svg" class="mobile-nav-icon"></img>
+                    <div class="mobile-nav-link-text">Login</div>
+                </a>
+            <?php
+            }
+            ?>
+        </div>
     </nav>
 </body>
