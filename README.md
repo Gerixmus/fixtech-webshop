@@ -13,4 +13,5 @@
 - [ ] Check from which site I'm searching for products.
 - [ ] Transition not working on the first mobile menu click.
 - [x] Disable scroll while using mobile menu.
-- [ ] Work on footer responsiveness.
+- [x] Work on footer responsiveness.
+- [ ] Make sure all pages are reponsive.

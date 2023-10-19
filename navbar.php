@@ -95,6 +95,10 @@ include 'includes/dbh.inc.php';
         <?php
         } else {
         ?>
+            <a href='cart.php' class="nav-link">
+                <img src="images\basket-shopping-solid.svg" class="nav-icon"></img>
+                <div class="nav-link-text">Cart</div>
+            </a>
             <a href='login.php' class="nav-link">
                 <img src="images\right-to-bracket-solid.svg" class="nav-icon"></img>
                 <div class="nav-link-text">Login</div>
@@ -102,10 +106,6 @@ include 'includes/dbh.inc.php';
             <a href='signup.php' class="nav-link">
                 <img src="images\address-card-regular.svg" class="nav-icon"></img>
                 <div class="nav-link-text">Sign up</div>
-            </a>
-            <a href='cart.php' class="nav-link">
-                <img src="images\basket-shopping-solid.svg" class="nav-icon"></img>
-                <div class="nav-link-text">Cart</div>
             </a>
             <a class="nav-link selector" onclick="toggleMenu()">
                 <img src="images\bars-solid.svg" class="nav-icon"></img>
@@ -148,6 +148,10 @@ include 'includes/dbh.inc.php';
             <?php
             } else {
             ?>
+                <a href='cart.php' class="mobile-nav-link">
+                    <img src="images\basket-shopping-solid.svg" class="mobile-nav-icon"></img>
+                    <div class="mobile-nav-link-text">Cart</div>
+                </a>
                 <a href='login.php' class="mobile-nav-link">
                     <img src="images\right-to-bracket-solid.svg" class="mobile-nav-icon"></img>
                     <div class="mobile-nav-link-text">Login</div>
@@ -155,10 +159,6 @@ include 'includes/dbh.inc.php';
                 <a href='signup.php' class="mobile-nav-link">
                     <img src="images\address-card-regular.svg" class="mobile-nav-icon"></img>
                     <div class="mobile-nav-link-text">Sign up</div>
-                </a>
-                <a href='cart.php' class="mobile-nav-link">
-                    <img src="images\basket-shopping-solid.svg" class="mobile-nav-icon"></img>
-                    <div class="mobile-nav-link-text">Cart</div>
                 </a>
             <?php
             }

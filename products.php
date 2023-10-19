@@ -46,7 +46,6 @@ if (isset($_GET["action"])) {
 
 
 <div class="product-container">
-    <h1 class="product-main-header">Product List</h1>
     <div class="product-list" id="product-list">
         <!-- Products will be loaded here -->
     </div>

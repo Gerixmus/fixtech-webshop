@@ -34,19 +34,19 @@ if (!isset($_SESSION['email'])) {
                 echo "<form action='includes/update_product.inc.php' method='post' class='signup-form'>
                 <div class='form-group'>
                 <label for='product_id'>Product ID</label>
-                <input type='text' id='product_id' name='product_id' value=$product_id readonly>
+                <input type='text' id='product_id' name='product_id' value='$product_id' readonly>
                 </div>
                 <div class='form-group'>
                 <label for='product_name'>Product Name</label>
-                <input type='text' id='product_name' name='product_name' value=$product_name>
+                <input type='text' id='product_name' name='product_name' value='$product_name'>
                 </div>
                 <div class='form-group'>
                 <label for='category'>Category</label>
-                <input type='text' id='category' name='category' value=$category>
+                <input type='text' id='category' name='category' value='$category'>
                 </div>
                 <div class='form-group'>
                 <label for='price'>Price</label>
-                <input type='text' id='price' name='price' value=$price>
+                <input type='text' id='price' name='price' value='$price'>
                 </div>
                 <div class='form-group'>
                 <label for='manufacturer'>Manufacturer</label>
