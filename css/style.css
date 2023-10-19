@@ -223,7 +223,7 @@ h3{
 /* products */
 
 .product-container, .orders-container {
-    background-color: #f2f2f2;
+    background-color: #fff;
     padding: 20px;
     flex: 1;
     margin-top: 84px;
@@ -459,24 +459,22 @@ table{
   text-align: right;
 }
 
-#product-list {
+.product-list {
+  grid-gap: 1.6rem;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 230px));
-  gap: 20px;
-  justify-content: center;
-  align-items: flex-start; /* Adjust alignment to the top */
-  margin: 20px;
+  grid-template-columns: repeat(3,minmax(12rem,1fr));
+  justify-content: left;
+  margin-left: -1.6rem;
+  padding: 1.6rem 3.2rem;
 }
 
 /* STYLE FOR SINGLE PRODUCT CARD */
 .product-card {
-  border: 1px solid #ccc;
   padding: 10px;
-  margin: 10px;
   text-align: center;
-  height: 350px; /* Set a fixed height for all product cards */
-  overflow: hidden; /* Hide content overflow */
-  width: 230px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* ... (other styles) */
@@ -525,8 +523,7 @@ input[type="number"] {
   background-color: rgba(0,0,0,.8);
   height: 100vh;
   width: 100vw;
-  position: absolute;
-  z-index: 1;
+  position: fixed;
   overflow: hidden;
 }
 
@@ -557,6 +554,8 @@ input[type="number"] {
   height: 100%;
   margin-right: auto;
   background: #f2f2f2;
+  position: absolute;
+  transition: transform .2s ease-in-out;
 }
 
 @media (max-width: 600px) {
@@ -584,6 +583,15 @@ input[type="number"] {
   }
 }
 
+@media (max-width: 800px) {
+  .product-list {
+    display: flex;
+    flex-direction: column;
+    margin-left: -1.6rem;
+    padding: 1.6rem 3.2rem;
+  }
+}
+
 @media (max-width: 1000px) {
   .nav-link {
     display: none;  
@@ -594,6 +602,9 @@ input[type="number"] {
 }
 
 @media (min-width: 1000px) {
+  body{
+    overflow: auto!important;
+  }
   .mobile-menu{
     display: none!important;
   }

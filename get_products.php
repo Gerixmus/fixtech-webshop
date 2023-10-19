@@ -21,11 +21,7 @@ if ($result) {
             <h3 class="product-name" name="product-name"><?= $row['product_name'] ?></h3>
             <p class="product-price" name="product-price">Price: $<?= $row['price'] ?></p>
             <p class="product-manufacturer" name="product-manufacturer">Manufacturer: <?= $row['manufacturer'] ?></p>
-
-            <div class="quantity-control">
-                <label for="quantity">Quantity:</label>
-                <input type="number" id="quantity" name="quantity" value="1" min="1" max="999">
-            </div>
+            <input type="hidden" id="quantity" name="quantity" value="1">
 
             <button class="add-to-cart-button" type="submit" name="add_to_cart">Add to Cart</button>
         </form>
