@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 16 Maj 2023, 13:18
--- Wersja serwera: 10.4.24-MariaDB
--- Wersja PHP: 8.1.6
+-- Generation Time: Paź 25, 2023 at 01:21 AM
+-- Wersja serwera: 10.4.28-MariaDB
+-- Wersja PHP: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Baza danych: `fixtech`
+-- Database: `fixtech`
 --
 
 -- --------------------------------------------------------
@@ -34,24 +34,16 @@ CREATE TABLE `orders` (
   `total` int(10) NOT NULL,
   `status` tinyint(1) NOT NULL,
   `date` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Zrzut danych tabeli `orders`
+-- Dumping data for table `orders`
 --
 
 INSERT INTO `orders` (`order_id`, `user_id`, `description`, `total`, `status`, `date`) VALUES
-(1, 4, 'ScotchBlue,quantity=5', 30, 1, '2022-12-28 03:35:23'),
-(3, 9, 'Cellfast Economic Garden Hose,quantity=10ScotchBlue,quantity=11drill,quantity=112', 10572, 1, '2022-12-28 03:40:21'),
-(4, 4, 'Cellfast Economic Garden Hose,quantity=1ScotchBlue,quantity=1', 15, 1, '2022-12-28 04:07:14'),
-(5, 4, 'Cellfast Economic Garden Hose,quantity=12ScotchBlue,quantity=3', 126, 1, '2022-12-28 04:08:03'),
-(6, 4, 'Cellfast Economic Garden Hose,quantity=12ScotchBlue,quantity=3', 126, 1, '2022-12-28 04:08:03'),
-(7, 4, 'Cellfast Economic Garden Hose,quantity=12ScotchBlue,quantity=3', 126, 1, '2022-12-28 04:10:53'),
-(8, 6, 'Cellfast Economic Garden Hose,quantity=1drill,quantity=1', 102, 1, '2022-12-28 04:55:24'),
-(9, 4, 'Cellfast Economic Garden Hose,quantity=4', 36, 1, '2023-01-09 10:05:52'),
-(10, 4, 'Cellfast Economic Garden Hose,quantity=20ScotchBlue,quantity=16', 276, 1, '2023-01-10 04:29:48'),
-(11, 5, 'Cellfast Economic Garden Hose,quantity=5', 45, 1, '2023-01-10 04:33:29'),
-(12, 4, 'Cellfast Economic Garden Hose,quantity=3', 27, 1, '2023-01-12 10:56:15');
+(53, 5, '{ \"product_id\": \"20\", \"product_name\": \"XGT\", \"quantity\": \"1\" }', 150, 1, '2023-10-18 04:21:09'),
+(54, 5, '{ \"product_id\": \"20\", \"product_name\": \"XGT\", \"quantity\": \"1\" }', 150, 1, '2023-10-18 04:21:30'),
+(55, 5, '{ \"product_id\": \"18\", \"product_name\": \"3/8\", \"quantity\": \"1\" }', 138, 1, '2023-10-19 07:20:13');
 
 -- --------------------------------------------------------
 
@@ -61,24 +53,23 @@ INSERT INTO `orders` (`order_id`, `user_id`, `description`, `total`, `status`, `
 
 CREATE TABLE `product` (
   `product_id` int(10) NOT NULL,
-  `product_name` varchar(50) NOT NULL,
+  `product_name` varchar(100) NOT NULL,
   `category` varchar(50) NOT NULL,
-  `price` int(10) NOT NULL,
+  `price` decimal(10,2) NOT NULL,
   `manufacturer` varchar(50) DEFAULT NULL,
-  `status` tinyint(1) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `status` tinyint(1) DEFAULT NULL,
+  `photo` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Zrzut danych tabeli `product`
+-- Dumping data for table `product`
 --
 
-INSERT INTO `product` (`product_id`, `product_name`, `category`, `price`, `manufacturer`, `status`) VALUES
-(1, 'Removed', 'tools', 15, 'STIHL', 0),
-(2, 'Cellfast Economic Garden Hose', 'garden', 9, 'Cellfast', 1),
-(3, 'ScotchBlue', 'construction', 6, 'ScotchBlue', 1),
-(4, 'drill', 'tools', 93, 'MAKITA', 1),
-(5, 'screwdriver', 'tools', 15, 'MAKITA', 1),
-(6, 'power drill', 'tools', 155, 'STIHL', 0);
+INSERT INTO `product` (`product_id`, `product_name`, `category`, `price`, `manufacturer`, `status`, `photo`) VALUES
+(18, '3/8\" Cordless Drill / Driver', 'tools', 138.07, 'MAKITA', 1, '../product_images/makita.jpg'),
+(19, 'Rotary hammer', 'tools', 123.00, 'MAKITA', 1, '../product_images/rotary-hammer.jpg'),
+(20, '40Vmax XGT X-Lock Angle Grinder with 2x 2.5Ah Batteries and Charger', 'tools', 546.95, 'MAKITA', 1, '../product_images/xgt.jpg'),
+(21, 'Drill', 'tools', 223.00, 'DEWALT', 1, '../product_images/dewalt.jpg');
 
 -- --------------------------------------------------------
 
@@ -95,18 +86,19 @@ CREATE TABLE `user` (
   `password` varchar(255) NOT NULL,
   `phone_no` char(10) DEFAULT NULL,
   `active` tinyint(1) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Zrzut danych tabeli `user`
+-- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`user_id`, `privilege`, `name`, `surname`, `email`, `password`, `phone_no`, `active`) VALUES
-(4, 1, 'admin', 'admin', 'admin@admin.com', '$2y$10$sfQYZzOERGa9Um/8dRlivezvfNSiZ9A33XK.NVmc48dB.PE1dG1H2', NULL, 1),
-(5, 0, 'kamil', 'tumulec', 'kamil@tumulec.com', '$2y$10$4wcm5dZBL4CKHxyIMR0TQ.ghZ3OeIuNljWM2Q1rCy4T4ZFtasv.Xa', NULL, 1),
+(4, 1, 'admin', 'admin', 'admin@admin.com', '$2y$10$sfQYZzOERGa9Um/8dRlivezvfNSiZ9A33XK.NVmc48dB.PE1dG1H2', '123456789', 1),
+(5, 0, 'kamil', 'tumulec', 'kamil@tumulec.com', '$2y$10$/EY86CPfSEDuFnSJzevHGOmf0zizqQR/4ET3NCwMXjok7G.kjXH9u', NULL, 1),
 (6, 0, 'Tony', 'Stark', 'tony@stark.com', '$2y$10$WoVsKwqdeV5RBbmPxrcHrOTJKf9xgfyIITYyJVmaCNXMYZZrn0tb6', '987654321', 1),
 (8, 0, 'marcin', 'najman', 'marcin@najman.com', '$2y$10$FBGH9btbOOB1lE2c2DrXouT0svC54LLCF.Yh7M772K9sg1oiLt5Z.', '123456789', 1),
-(9, 0, 'ania', 'frania', 'ania@ania.com', '$2y$10$Yy9Xt80UDxEUDVkCx0JfTO56YDO5HGaNgabAQtZhPDxM3u/uLQ2Iu', '', 1);
+(9, 0, 'ania', 'frania', 'ania@ania.com', '$2y$10$Yy9Xt80UDxEUDVkCx0JfTO56YDO5HGaNgabAQtZhPDxM3u/uLQ2Iu', '', 1),
+(10, 0, 'adam', 'adam', 'adam@adam.com', '$2y$10$Top8BGYiBdxZrf2zg0qiHetE0vXlktPaMnK4NB1Z8sp8ONJBJizyq', NULL, 1);
 
 --
 -- Indeksy dla zrzutów tabel
@@ -131,26 +123,26 @@ ALTER TABLE `user`
   ADD PRIMARY KEY (`user_id`);
 
 --
--- AUTO_INCREMENT dla zrzuconych tabel
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT dla tabeli `orders`
+-- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `order_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
--- AUTO_INCREMENT dla tabeli `product`
+-- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `product_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `product_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
--- AUTO_INCREMENT dla tabeli `user`
+-- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `user_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
